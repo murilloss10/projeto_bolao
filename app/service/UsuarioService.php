@@ -69,7 +69,7 @@ class UsuarioService {
 
     public function buscarUsuarioPorCpf($cpf)
     {
-        $usuario = $this->userRepository->where('cpf', $cpf)->first();
+        $usuario = $this->userRepository->where('cpf', $cpf)->get();
         return $usuario;
     }
 

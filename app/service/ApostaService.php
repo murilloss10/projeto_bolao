@@ -55,12 +55,12 @@ class ApostaService {
             'required' => 'Campo obrigatório',
         ];
         $data->validate($rules, $messages);
-
+        
         if ($data->usuario_id == NULL || $data->usuario_id == "") {
             $usuario_id = Auth::id();
         } else {
             $usuario = $this->usuarioService->buscarUsuarioPorCpf($data->usuario_id);
-            $usuario_id = $usuario->id;
+            $usuario_id = $usuario->first()->id;
         }
 
         $aposta = $this->apostaRepository->create(array(

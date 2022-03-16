@@ -22,8 +22,9 @@ class User extends Model implements Transformable
      *
      * @var array
      */
-    protected $table = 'users';
-    protected $dates = ['deleted_at'];
-    protected $fillable = ['id', 'name', 'type', 'email', 'email_verified_at', 'password'];
+    protected $keyType  = 'string';
+    protected $table    = 'users';
+    protected $dates    = ['deleted_at'];
+    protected $fillable = ['id', 'name', 'type', 'email', 'email_verified_at', 'cpf', 'password'];
 
 }

@@ -76,28 +76,10 @@ class ApostaService {
 
     
 	public function criar($data){
-        $rules = [
-            'aposta_id' => 'required',
-            'usuario_id' => 'required',
-            'usuario_nome' => 'required',
-            'partida_id' => 'required',
-            'valor_aposta' => 'required',
-            'descricao_partida' => 'required',
-            'data_partida' => 'required',
-            'clube_mandante_id' => 'required',
-            'clube_visitante_id' => 'required',
-            'clube_mandante_nome' => 'required',
-            'clube_visitante_nome' => 'required',
-        ];
-        $messages = [
-            'required' => 'Campo obrigatório',
-        ];
-        $data->validate($rules, $messages);
 
         $usuario_id = Auth::id();
         $usuario_nome = Auth::user()->name;
-
-        $relatorio = $this->relatorioRepository->create(array(//olhar novamente pra ver se está tudo correto
+        $relatorio = $this->relatorioRepository->create(array(
             'id' => (string) Uuid::uuid4(),
             'aposta_id' => $data->aposta_id,
             'usuario_id' => $usuario_id,
@@ -121,38 +103,28 @@ class ApostaService {
             'is_vitoria_mandante' => $data->is_vitoria_mandante,
             'is_vitoria_visitante' => $data->is_vitoria_visitante,
             'valida' => $data->valida,
-            'vencido' => $data->vencido,
+            'vencida' => $data->vencido,
         ));
         return $relatorio;
     }
 
 
 	public function editar($data){
-        $rules = [
-            'partida_id' => 'required',
-            'usuario_id' => 'required',
-            'placar_usuario_mandante' => 'required',
-            'placar_usuario_visitante' => 'required',
-            'valor_aposta' => 'required',
-            'valida' => 'required',
-            'created_by' => 'required',
-            'updated_by' => 'required',
-        ];
-        $messages = [
-            'required' => 'Campo obrigatório',
-        ];
-        $data->validate($rules, $messages);
+
         $relatorio = $this->relatorioRepository->find($data->id);
-        $relatorio->update(array(
-            'partida_id' => $data->partida_id,
-            'usuario_id' => $data->usuario_id,
-            'placar_usuario_mandante' => $data->placar_usuario_mandante,
-            'placar_usuario_visitante' => $data->placar_usuario_visitante,
-            'valor_aposta' => $data->valor_aposta,
+        $relatorio->update(array( //revisar daqui pra baixo
+            'placar_aposta_clube_mandante' => $data->placar_aposta_clube_mandante,
+            'placar_aposta_clube_visitante' => $data->placar_aposta_clube_visitante,
+            'aposta_em_empate' => $data->aposta_em_empate,
+            'aposta_em_mandante' => $data->aposta_em_mandante,
+            'aposta_em_visitante' => $data->aposta_em_visitante,
+            'placar_oficial_mandante' => $data->placar_oficial_mandante,
+            'placar_oficial_visitante' => $data->placar_oficial_visitante,
+            'is_empate' => $data->is_empate,
+            'is_vitoria_mandante' => $data->is_vitoria_mandante,
+            'is_vitoria_visitante' => $data->is_vitoria_visitante,
             'valida' => $data->valida,
-            'vencido' => $data->vencido,
-            'created_by' => $data->created_by,
-            'updated_by' => $data->updated_by,
+            'vencida' => $data->vencido,
         ));
         return $relatorio;
     }

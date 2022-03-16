@@ -13,6 +13,10 @@
 
                     <div class="p-6 bg-white border-b border-gray-200 col-lg-6">
                         
+                        @if (isset($mensagem))
+                            <p>{{ $mensagem }}</p>
+                        @endif
+
                         @if (isset($partida_placar))
                             @include('partidas.form_alterar_placar')
                         @elseif (isset($partida_editar))

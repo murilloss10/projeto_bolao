@@ -25,21 +25,21 @@
         </div>
         <div class="mb-3 col-lg-4">
             <label for="inputUsuario" class="form-label">CPF do Usuário</label>
-            <input type="text" class="form-control" id="inputUsuario" name="usuario_id" value="">
+            <input type="text" class="form-control" id="inputUsuario" name="usuario_id">
             @error('usuario_id')
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
         </div>
         <div class="mb-3 col-lg-2">
             <label for="inputPlacarMandante" class="form-label">Placar Time Mandante</label>
-            <input type="number" class="form-control" id="inputPlacarMandante" name="placar_usuario_mandante" value="" min="0">
+            <input type="number" class="form-control" id="inputPlacarMandante" name="placar_usuario_mandante" min="0">
             @error('placar_usuario_mandante')
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
         </div>
         <div class="mb-3 col-lg-2">
             <label for="inputPlacarVisitante" class="form-label">Placar Time Visitante</label>
-            <input type="number" class="form-control" id="inputPlacarVisitante" name="placar_usuario_visitante" value="" min="0">
+            <input type="number" class="form-control" id="inputPlacarVisitante" name="placar_usuario_visitante" min="0">
             @error('placar_usuario_visitante')
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
